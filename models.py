@@ -91,6 +91,7 @@ for t in (TwitterUser, TelegramChat, Tweet, Subscription):
 
 
 # Migrate new fields. TODO: think of some better migration mechanism
+# what is this shit??? TODO fix this, it doesn't belong here
 db = SqliteDatabase('peewee.db', timeout=10)
 migrator = SqliteMigrator(db)
 operations = [
