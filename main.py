@@ -25,8 +25,8 @@ if __name__ == '__main__':
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         level=logging.WARNING)
 
-    logging.getLogger(TwitterForwarderBot.__name__).setLevel(logging.DEBUG)
-    logging.getLogger(FetchAndSendTweetsJob.__name__).setLevel(logging.DEBUG)
+    logging.getLogger(TwitterForwarderBot.__name__).setLevel(logging.INFO)
+    logging.getLogger(FetchAndSendTweetsJob.__name__).setLevel(logging.INFO)
 
     # initialize Twitter API
     auth = tweepy.OAuthHandler(env('TWITTER_CONSUMER_KEY'), env('TWITTER_CONSUMER_SECRET'))

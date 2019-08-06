@@ -24,7 +24,7 @@ class TwitterForwarderBot(Bot):
 
     def send_tweet(self, chat, tweet):
         try:
-            self.logger.debug("Sending tweet {} to chat {}...".format(
+            self.logger.info("Sending tweet {} to chat {}...".format(
                 tweet.tw_id, chat.chat_id
             ))
 
