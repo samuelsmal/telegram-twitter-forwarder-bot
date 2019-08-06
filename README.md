@@ -1,3 +1,46 @@
+# Installation \& Setup on a raspberry pi
+
+Don't just copy and paste everything! Step 3, 6 and 9 require interaction. The rest can just pasted
+in.
+
+```
+#  1. Set up pyenv (you need python 3.5... otherwise you'll need to update the dependencies)
+sudo apt-get install -y bzip2 libbz2-dev libreadline6 libreadline6-dev libffi-dev \ 
+  libssl1.0-dev sqlite3 libsqlite3-dev
+curl https://pyenv.run | bash
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $HOME/.bashrc
+echo 'eval "$(pyenv init -)"' >> $HOME/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bashrc
+exec "$SHELL"
+pyenv install 3.5.7
+#  2. Clone this repo
+git clone https://github.com/samuelsmal/telegram-twitter-forwarder-bot.git
+cd telegram-twitter-forwarder-bot
+#  3. Adapt envs (check secrets.env.tmpl, store without the .tmpl ending)
+#  4. Setup python env
+pyenv virtualenv 3.5.7 teltwitbot
+pyenv local teltwitbot
+pip install -r requirements.txt
+#  5. Adapt python path
+which python
+#  6. Take output from above and modify the service file `teltwitbot.service`
+#     You'll need to adapt more. Some other paths as well.
+#     Note that systemd expects absolute paths.
+#  7. Move service file
+sudo cp ./teltwitbot.service /etc/systemd/system/
+#  8. Start service
+sudo systemctl daemon-reload
+sudo systemctl start teltwitbot
+#  9. Check output
+journalctl -u teltwitbot
+# 10. If good:
+sudo systemctl enable teltwitbot
+# 11. Reboot and check again
+# 12. Enjoy!
+```
+
+# Below is the original README
+
 # telegram-twitter-forwarder-bot
 ![logo](logo/logo.png)
 

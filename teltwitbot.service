@@ -1,0 +1,10 @@
+[Unit]
+Description=telegram twitter forwarder bot service
+
+[Service]
+Type=simple
+ExecStart=/home/pi/.pyenv/shims/python /home/pi/telegram-twitter-forwarder-bot/main.py
+EnvironmentFile=/home/pi/telegram-twitter-forwarder-bot/secrets.env
+
+[Install]
+WantedBy=multi-user.target
